@@ -5,6 +5,7 @@ $(document).ready(function() {
   var backArrow = $('.carousel-control-prev');
   backArrow.hide();
   nextArrow.hide()
+  setTimeout(() => {
   $.ajax({
     type: 'GET',
     url: 'https://smileschool-api.hbtn.info/quotes',
@@ -34,10 +35,11 @@ $(document).ready(function() {
           </div>
         </div>`
         carouselContainer.append(carouselItem);
-      });
-    },
-    error: function(error) {
-      console.log("Could not fetch API");
-    }
-  })
+        });
+      },
+      error: function(error) {
+        console.log("Could not fetch API");
+      }
+    })
+  }, 1500);
 });
