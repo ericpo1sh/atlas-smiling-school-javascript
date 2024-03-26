@@ -43,7 +43,23 @@ $(document).ready(function() {
     })
   }, 1500);
 
+  function ratingCount(stars) {
+    var starON = `<img src="images/star_on.png" alt="star on" width="15px"/>`
+    var starOFF = `<img src="images/star_off.png" alt="star off" width="15px"/>`
+    var finalRating = '';
+    var i = 0
+    for (i; i < stars; i++) {
+      finalRating += starON;
+    }
+    for (i; i < 5; i++) {
+      finalRating += starOFF
+    }
+    return finalRating;
+  }
+
+  var carouselItems = $('<div class"carousel-item"></div>')
   var carouselVideoContainer = $('#video_inner');
+  var videoRow = $('<div class="row"></div>');
   setTimeout(() => {
     $.ajax({
       type: 'GET',
@@ -81,38 +97,18 @@ $(document).ready(function() {
                 </div>
                 <div class="info pt-3 d-flex justify-content-between">
                   <div class="rating">
-                    <img
-                      src="images/star_on.png"
-                      alt="star on"
-                      width="15px"
-                    />
-                    <img
-                      src="images/star_on.png"
-                      alt="star on"
-                      width="15px"
-                    />
-                    <img
-                      src="images/star_on.png"
-                      alt="star on"
-                      width="15px"
-                    />
-                    <img
-                      src="images/star_on.png"
-                      alt="star on"
-                      width="15px"
-                    />
-                    <img
-                      src="images/star_off.png"
-                      alt="star on"
-                      width="15px"
-                    />
+                    ${ratingCount(element.star)}
                   </div>
                   <span class="main-color">${element.duration}</span>
                 </div>
               </div>
             </div>
           </div>`
-          carouselVideoContainer.append(carouselItem);
+        videoRow.append(carouselItem);
+        if ((idx + 1) % 4 === 0 || idx === data.length - 1) {
+          carouselItems.append(videoRow);
+          carouselVideoContainer.append(carouselItems);
+        }
         });
       },
       error: function(error) {
