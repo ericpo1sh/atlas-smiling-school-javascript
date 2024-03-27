@@ -116,4 +116,21 @@ $(document).ready(function() {
       }
     })
   }, 1500);
+
+  function videoCounter() {
+    videoCountText = $('.video-count');
+    vidCount = 0;
+    // function that counts number of videos on screen
+    videoCountText.text(`${vidCount} videos`)
+  }
+
+  setTimeout(() => {
+    function showCoursesVideos() {
+      $.ajax({
+        type: 'GET',
+        url: 'https://smileschool-api.hbtn.info/courses',
+
+      })
+    }
+  }, 1500);
 });
