@@ -41,9 +41,10 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-    <script src="scripts.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <!--- My stylesheet -->
+    <link rel="stylesheet" href="styles.css" />    <!-- Slick CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
   </head>
   <body class="body">
     <header class="header">
@@ -93,7 +94,6 @@
             </ul>
           </div>
         </nav>
-
         <section class="hero text-center text-white">
           <h1 class="font-weight-bold my-0">Get schooled</h1>
           <ul
@@ -160,50 +160,22 @@
         </div>
       </section>
       <section class="popular section d-flex align-items-center">
-        <div class="container">
+        <div class="container-fluid">
           <header class="section-header">
             <h2 class="text-center">
               Most
               <span class="main-color font-weight-bold">popular</span> tutorials
             </h2>
           </header>
-          <div
-            id="carouselExampleControls2"
-            class="carousel slide"
-            data-ride="carousel"
-          >
-            <div class="carousel-inner" id="video_inner">
-              <div class="loader"></div>
-            </div>
-            <a
-              class="carousel-control-prev arrow-left"
-              href="#carouselExampleControls2"
-              role="button"
-              data-slide="prev"
-            >
-              <img
-                src="images/arrow_black_left.png"
-                alt="Quote Previous"
-                aria-hidden="true"
-              />
-              <span class="sr-only">Previous</span>
-            </a>
-            <a
-              class="carousel-control-next arrow-right"
-              href="#carouselExampleControls2"
-              role="button"
-              data-slide="next"
-            >
-              <img
-                src="images/arrow_black_right.png"
-                alt="Quote Next"
-                aria-hidden="true"
-              />
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
+          <div class="loader"></div>
+          <div class="carousel-slick container" id="video_carousel"></div>
         </div>
       </section>
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <!-- Slick JS -->
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+      <!---Script -->
+      <script src="scripts.js"></script>
     </main>
   </body>
-</html>
+</html> 

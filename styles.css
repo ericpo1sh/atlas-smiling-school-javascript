@@ -917,3 +917,34 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.slick-slide img {
+  display: inline !important;
+}
+
+.slick-next.slick-arrow {
+  background: url(images/arrow_black_right.png) no-repeat !important;
+  height: 240px;
+  width: 60px;
+  right: -60px;
+  font-family: none !important;
+  opacity: 0.5;
+}
+
+.slick-prev.slick-arrow {
+  background: url(images/arrow_black_left.png) no-repeat !important;
+  height: 240px;
+  width: 60px;
+  left: -60px;
+  opacity: 0.5;
+}
+
+.slick-prev.slick-arrow::before, .slick-next.slick-arrow::before {
+  opacity: 0;
+  font-family: none !important;
+  content: none;
+}
+
+.slick-next.slick-arrow:hover, .slick-prev.slick-arrow:hover {
+  opacity: 0.8;
+}
