@@ -124,6 +124,13 @@ $(document).ready(function() {
     videoCountText.text(`${vidCount} videos`)
   }
 
+  function filterVideos(keywords, topic, sortBy) {
+    keywords = $("#keywords").val()
+    topic = $('#topic_dropdown :selected').val()
+    sortBy = $('#sortBy_dropdown :selected').val()
+    
+  }
+
   setTimeout(() => {
     function showCoursesVideos() {
       $.ajax({
