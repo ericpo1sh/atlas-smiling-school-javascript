@@ -926,8 +926,8 @@
   background: url(images/arrow_black_right.png) no-repeat !important;
   height: 240px;
   width: 60px;
-  right: -60px;
   font-family: none !important;
+  right: -3rem;
   opacity: 0.5;
 }
 
@@ -935,7 +935,7 @@
   background: url(images/arrow_black_left.png) no-repeat !important;
   height: 240px;
   width: 60px;
-  left: -60px;
+  left: -3rem;
   opacity: 0.5;
 }
 
