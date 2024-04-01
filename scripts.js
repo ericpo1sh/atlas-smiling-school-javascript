@@ -147,7 +147,96 @@ $(document).ready(function() {
     return finalRating;
   }
 
+  function getLatestVideosAPI() {
+    setTimeout(() => {
+      $.ajax({
+        type: 'GET',
+        url: 'https://smileschool-api.hbtn.info/latest-videos',
+        success: function(data) {
+          loader.hide();
+          data.forEach(function(video) {
+            var videoCard = `
+            <div class="col-sm-12 col-md-6 col-lg-3 d-sm-flex justify-content-md-start justify-content-lg-center justify-content-sm-center ml-5 ml-sm-0">
+              <div class="card">
+                <img
+                  src="${video.thumb_url}"
+                  class="card-img-top"
+                  alt="Video thumbnail"
+                />
+                <div class="card-img-overlay text-center">
+                  <img
+                    src="images/play.png"
+                    alt="Play"
+                    width="64px"
+                    class="align-self-center play-overlay"
+                  />
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title font-weight-bold">${video.title}</h5>
+                  <p class="card-text text-muted">
+                  ${video['sub-title']}
+                  </p>
+                  <div class="creator d-flex align-items-center">
+                    <img
+                      src="${video.author_pic_url}"
+                      alt="Creator of
+                      Video"
+                      width="30px"
+                      class="rounded-circle"
+                    />
+                    <h6 class="pl-3 m-0 main-color">${video.author}</h6>
+                  </div>
+                  <div class="info pt-3 d-flex justify-content-between">
+                    <div class="rating">${ratingCount(video.star)}</div>
+                    <span class="main-color">${video.duration}</span>
+                  </div>
+                </div>
+              </div>
+            </div>`
+            $('#latest_video_carousel').append(videoCard);
+          })
+          $('.carousel-slick').slick({
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            responsive: [
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 3,
+                  slidesToScroll: 1,
+                  infinite: true,
+                }
+              },
+              {
+                breakpoint: 860,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 1
+                }
+              },
+              {
+                breakpoint: 580,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1
+                }
+              }
+              // You can unslick at a given breakpoint now by adding:
+              // settings: "unslick"
+              // instead of a settings object
+            ]
+          })
+        },
+        error: function() {
+          console.log("Couldn't get API");
+        }
+      })
+    }, 1500);
+  }
+
   getCommentsAPI();
   getVideosAPI();
+  getLatestVideosAPI();
 });
 
