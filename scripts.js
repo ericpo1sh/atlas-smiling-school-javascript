@@ -54,7 +54,7 @@ $(document).ready(function() {
           loader.hide();
           data.forEach(function(video) {
             var videoCard = `
-            <div class="col-sm-6 col-md-6 col-lg-3 d-none d-sm-flex justify-content-md-start justify-content-lg-center">
+            <div class="col-sm-12 col-md-6 col-lg-3 d-sm-flex justify-content-md-start justify-content-lg-center justify-content-sm-center ml-5 ml-sm-0">
               <div class="card">
                 <img
                   src="${video.thumb_url}"
