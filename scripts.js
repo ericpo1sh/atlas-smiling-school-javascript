@@ -238,5 +238,6 @@ $(document).ready(function() {
   getCommentsAPI();
   getVideosAPI();
   getLatestVideosAPI();
+  
 });
 
