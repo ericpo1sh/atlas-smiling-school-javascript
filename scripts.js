@@ -279,11 +279,12 @@ $(document).ready(function() {
   function filterVideos(videos, keyWords) {
     if (!keyWords) {
       return videos;
-    } else {
+    } else { 
       return videos.filter(function(video) {
         if (Array.isArray(video.keyWords)) {
           return video.keyWords.join(' ').toLowerCase().includes(keyWords.toLowerCase());
         }
+        console.log(video)
         return video;
       });
     }
