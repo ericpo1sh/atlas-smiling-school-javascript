@@ -250,16 +250,14 @@ $(document).ready(function() {
     });
   }
 
-  function dropTopicGenerate(dropId) {
-    let dropdownMenu = $('#' + dropId);
-    let firstText = dropdownMenu.find('.dropdown-item').first().text();
-    $('#topic_dropdown').append('<span id="topicSpan">' + firstText + '</span>');
+  function topicGenerator(id) {
+    let topicText = id.find('.dropdown-item').first().text();
+    $('#topic_span').text(topicText);
   }
 
-  function dropSortGenerate(dropId) {
-    let dropdownMenu = $('#' + dropId);
-    let firstText = dropdownMenu.find('.dropdown-item').first().text();
-    $('#sortBy_dropdown').append('<span id="sortSpan">' + firstText + '</span>');
+  function sortGenerator(id) {
+    let sortText = id.find('.dropdown-item').first().text();
+    $('#sort_span').text(sortText);
   }
 
   function dropTopicClick(itemText, videos) {
@@ -271,7 +269,7 @@ $(document).ready(function() {
     $('#sortBy_dropdown span').text(itemText);
     appendVideos();
   }
-``
+
   $('.search-text-area').on('keypress', function(event) {
   if (event.which === 13 || event.keyCode === 13) {
     appendVideos();
@@ -286,20 +284,20 @@ $(document).ready(function() {
         if (Array.isArray(video.keyWords)) {
           return video.keyWords.join(' ').toLowerCase().includes(keyWords.toLowerCase());
         }
-        return false;
+        return video;
       });
     }
   }
-
+  
   function appendVideos(video) {
     coursesVideos.empty();
     var keyWordVal = $('.search-text-area').val().toLowerCase();
     var filteredVideos = filterVideos(video, keyWordVal);
-
+    
     $.each(filteredVideos, function(idx, data) {
       var videoInfo = data.video;
       var videoCard = `
-        <div class="col-sm-12 col-md-6 col-lg-3 d-sm-flex justify-content-md-start justify-content-lg-center justify-content-sm-center ml-5 ml-sm-0">
+        <div class="col-sm-12 col-md-6 col-lg-3 d-sm-flex justify-content-md-start justify-content-lg-center justify-content-sm-center ml-0">
         <div class="card">
           <img
             src="${videoInfo.thumb_url}"
@@ -366,28 +364,28 @@ $(document).ready(function() {
         coursesVideos.show();
         if (data && data.topics && data.sorts) {
           dropdownItems(data.topics, 'topicDropdownMenu', function(itemText) {
-              dropTopicClick(itemText, videos);
+            dropTopicClick(itemText, videos);
           });
           dropdownItems(data.sorts, 'sortDropdownMenu', function(itemText) {
-              dropSortClick(itemText, videos);
+            dropSortClick(itemText, videos);
           });
-
-          dropTopicGenerate('topicDropdownMenu');
-          dropSortGenerate('sortDropdownMenu');
+          
+          topicGenerator($('#topicDropdownMenu'));
+          sortGenerator($('#sortDropdownMenu'));
         }
-
         $('.search-text-area').val(data.q);
         var vidsToShow = [];
-          data.courses.forEach(function(idx, item) {
-            vidsToShow.push({
-              video: item,
-              views: item.views,
-              published_at: new Date(item.published_at),
-              topic: item.topic,
-              keywords: item.keywords
-            });
+        var videoData = data.courses; 
+        $.each(videoData, function(idx, item) {
+          vidsToShow.push({
+            video: item,
+            views: item.views,
+            published_at: new Date(item.published_at),
+            topic: item.topic,
+            keywords: item.keywords
           });
-          appendVideos(vidsToShow);
+        });
+        appendVideos(vidsToShow);
       },
     error: function() {
       console.log('something went wrong while filtering the JSON data');
